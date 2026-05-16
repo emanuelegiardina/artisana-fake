@@ -1,9 +1,9 @@
 version: 0.0
 Resources:
-  - artisanaLambda:
+  - myLambdaFunction:
       Type: AWS::Lambda::Function
       Properties:
         Name: "artisana-order-processor"
         Alias: "live"
-#        CurrentVersion: "1"
-#        TargetVersion: "2"
+        CurrentVersion: "2"
+        TargetVersion: "3"
