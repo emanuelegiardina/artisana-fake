@@ -19,9 +19,10 @@ phases:
       - sam build
 
       - sam package \
-          --s3-bucket $ARTIFACT_BUCKET \
-          --output-template-file packaged.yaml
+          --s3-bucket $ARTIFACT_BUCKET --output-template-file packaged.yaml
+          - ls -la
 
 artifacts:
   files:
     - packaged.yaml
+  base-directory: .
