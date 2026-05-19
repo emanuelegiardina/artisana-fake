@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+
+  install:
+    runtime-versions:
+      python: 3.12
+
+    commands:
+      - pip install pytest
+      - pip install aws-sam-cli
+
+  pre_build:
+    commands:
+      - pytest tests/
+
+  build:
+    commands:
+      - sam build
+
+      - sam package \
+          --s3-bucket $ARTIFACT_BUCKET \
+          --output-template-file packaged.yaml
+
+artifacts:
+  files:
+    - packaged.yaml

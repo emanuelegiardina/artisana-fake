@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+
+  HelloFunction:
+    Type: AWS::Serverless::Function
+
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      CodeUri: .
+
+      AutoPublishAlias: live
+
+      DeploymentPreference:
+        Enabled: true
+        Type: Canary10Percent5Minutes
+      
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
